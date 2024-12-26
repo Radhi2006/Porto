@@ -1,0 +1,464 @@
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent: #64ffda;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --container-padding: clamp(1rem, 5vw, 2rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-md);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: padding 0.3s;
+        }
+
+        @media (min-width: 1024px) {
+            header {
+                padding: var(--spacing-lg);
+            }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: clamp(4rem, 10vh, 6rem) auto 0;
+            padding: var(--container-padding);
+        }
+
+        section {
+            margin-bottom: clamp(3rem, 8vh, 6rem);
+            scroll-margin-top: 5rem;
+        }
+
+        h2 {
+            color: var(--accent);
+            margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        @media (min-width: 768px) {
+            .about {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .about img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .about p {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            max-width: 65ch;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: clamp(1rem, 3vw, 1.5rem);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .project-info h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: var(--accent);
+        }
+
+        /* Certificates Section */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .certificate-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: var(--spacing-md);
+            aspect-ratio: 3/2;
+            object-fit: cover;
+        }
+
+        .certificate-card h3 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: min(600px, 100%);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: clamp(0.6rem, 2vw, 0.8rem);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--text-secondary);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 4vw, 2rem);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            width: 100%;
+        }
+
+        @media (min-width: 480px) {
+            button {
+                width: auto;
+            }
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: clamp(2rem, 5vh, 3rem) var(--container-padding);
+            text-align: center;
+            margin-top: clamp(3rem, 8vh, 5rem);
+        }
+
+        .social-links {
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Navigation */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: color 0.3s;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                text-align: center;
+                gap: var(--spacing-lg);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">John Doe</div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="#about">Tentang Saya</a>
+                <a href="#projects">Proyek</a>
+                <a href="#certificates">Sertifikat</a>
+                <a href="#contact">Kontak</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="about">
+            <div>
+                <h2>Tentang Saya</h2>
+                <p>Saya adalah seorang pengembang web full-stack dengan pengalaman lebih dari 5 tahun dalam membangun aplikasi web modern. Keahlian saya mencakup HTML, CSS, JavaScript, React, dan Node.js. Saya selalu bersemangat untuk belajar teknologi baru dan menciptakan solusi inovatif untuk masalah kompleks.</p>
+            </div>
+            <img src="img/IMG_9929.png" alt="Profile Picture">
+        </section>
+
+        <section id="projects">
+            <h2>Proyek</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="img/Screenshot 2024-12-26 102013.png" alt="Project 1">
+                    <div class="project-info">
+                        <h3>E-Commerce Website</h3>
+                        <p>Website e-commerce lengkap dengan sistem pembayaran. Dibangun menggunakan HTML, CSS, JS</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/300" alt="Project 2">
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim. Menggunakan Vue.js untuk frontend dan Firebase untuk backend.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/300" alt="Project 3">
+                    <div class="project-info">
+                        <h3>Portfolio Website</h3>
+                        <p>Website portofolio responsif dengan tema gelap. Dibuat menggunakan HTML, CSS, dan JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates">
+            <h2>Sertifikat</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <img src="/api/placeholder/300/200" alt="Certificate 1">
+                    <h3>Web Development</h3>
+                    <p>Udemy - 2023</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="/api/placeholder/300/200" alt="Certificate 2">
+                    <h3>React Advanced</h3>
+                    <p>Coursera - 2023</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="/api/placeholder/300/200" alt="Certificate 3">
+                    <h3>Node.js Expert</h3>
+                    <p>FreeCodeCamp - 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Kontak</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Pesan" rows="5" required></textarea>
+                </div>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 John Doe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.menu-toggle')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
