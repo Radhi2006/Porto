@@ -152,6 +152,15 @@
             flex-direction: column;
         }
 
+        .project-card a {
+            color: inherit; /* Menggunakan warna teks yang sama dengan elemen di sekitarnya */
+            text-decoration: none; /* Menghapus garis bawah */
+        }
+        
+        .project-card a:hover {
+            color: var(--accent); /* Mengubah warna saat hover */
+        }
+
         .project-card:hover {
             transform: translateY(-5px);
         }
@@ -364,25 +373,31 @@
             <h2>Proyek</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="img/Proyek-1.png" alt="Project 1">
-                    <div class="project-info">
-                        <h3>E-Commerce Website</h3>
-                        <p>Website e-commerce lengkap dengan sistem pembayaran. Dibangun menggunakan HTML, CSS, JS</p>
-                    </div>
+                    <a href="https://tokoradhi.vercel.app" target="_blank">
+                        <img src="img/Proyek-1.png" alt="Project 1">
+                        <div class="project-info">
+                            <h3>E-Commerce Website</h3>
+                            <p>Website e-commerce lengkap dengan sistem pembayaran. Dibangun menggunakan HTML, CSS, JS</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="project-card">
-                    <img src="img/Proyek-2.png" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Restaurant Website</h3>
-                        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim. Menggunakan Vue.js untuk frontend dan Firebase untuk backend.</p>
-                    </div>
+                    <a href="https://gorey.vercel.app/" target="_blank">
+                        <img src="img/Proyek-2.png" alt="Project 2">
+                        <div class="project-info">
+                            <h3>Restaurant Website</h3>
+                            <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim. Menggunakan Vue.js untuk frontend dan Firebase untuk backend.</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="project-card">
-                    <img src="img/Proyek-3.png" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Courses Website</h3>
-                        <p>Website portofolio responsif dengan tema gelap. Dibuat menggunakan HTML, CSS, dan JavaScript.</p>
-                    </div>
+                    <a href="https://web-radhiafif.vercel.app/" target="_blank">
+                        <img src="img/Proyek-3.png" alt="Project 3">
+                        <div class="project-info">
+                            <h3>Courses Website</h3>
+                            <p>Website portofolio responsif dengan tema gelap. Dibuat menggunakan HTML, CSS, dan JavaScript.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
