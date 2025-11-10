@@ -1,478 +1,251 @@
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Website</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --accent: #64ffda;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 2rem;
-            --container-padding: clamp(1rem, 5vw, 2rem);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        @media (max-width: 768px) {
-            html {
-                font-size: 14px;
-            }
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--bg-secondary);
-            padding: var(--spacing-md);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: padding 0.3s;
-        }
-
-        @media (min-width: 1024px) {
-            header {
-                padding: var(--spacing-lg);
-            }
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 var(--container-padding);
-        }
-
-        .logo {
-            font-size: clamp(1.25rem, 4vw, 1.5rem);
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: clamp(1rem, 3vw, 2rem);
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1200px;
-            margin: clamp(4rem, 10vh, 6rem) auto 0;
-            padding: var(--container-padding);
-        }
-
-        section {
-            margin-bottom: clamp(3rem, 8vh, 6rem);
-            scroll-margin-top: 5rem;
-        }
-
-        h2 {
-            color: var(--accent);
-            margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
-            font-size: clamp(1.75rem, 5vw, 2.5rem);
-        }
-
-        /* About Section */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        @media (min-width: 768px) {
-            .about {
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-            }
-        }
-
-        .about img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            margin: 0 auto;
-        }
-
-        .about p {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            max-width: 65ch;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-            gap: clamp(1rem, 3vw, 2rem);
-        }
-
-        .project-card {
-            background-color: var(--bg-secondary);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card a {
-            color: inherit; /* Menggunakan warna teks yang sama dengan elemen di sekitarnya */
-            text-decoration: none; /* Menghapus garis bawah */
-        }
-        
-        .project-card a:hover {
-            color: var(--accent); /* Mengubah warna saat hover */
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card img {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
-
-        .project-info {
-            padding: clamp(1rem, 3vw, 1.5rem);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-
-        .project-info h3 {
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
-            color: var(--accent);
-        }
-
-        /* Certificates Section */
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-            gap: clamp(1rem, 3vw, 2rem);
-        }
-
-        .certificate-card {
-            background-color: var(--bg-secondary);
-            border-radius: 10px;
-            padding: clamp(1rem, 3vw, 1.5rem);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .certificate-card img {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: var(--spacing-md);
-            aspect-ratio: 3/2;
-            object-fit: cover;
-        }
-
-        .certificate-card h3 {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: min(600px, 100%);
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: clamp(0.6rem, 2vw, 0.8rem);
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--text-secondary);
-            border-radius: 5px;
-            color: var(--text-primary);
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        button {
-            background-color: var(--accent);
-            color: var(--bg-primary);
-            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 4vw, 2rem);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            width: 100%;
-        }
-
-        @media (min-width: 480px) {
-            button {
-                width: auto;
-            }
-        }
-
-        button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--bg-secondary);
-            padding: clamp(2rem, 5vh, 3rem) var(--container-padding);
-            text-align: center;
-            margin-top: clamp(3rem, 8vh, 5rem);
-        }
-
-        .social-links {
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: clamp(1rem, 3vw, 2rem);
-        }
-
-        .social-links a {
-            color: var(--text-primary);
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* Mobile Navigation */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            transition: color 0.3s;
-        }
-
-        .menu-toggle:hover {
-            color: var(--accent);
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--bg-secondary);
-                flex-direction: column;
-                padding: var(--spacing-lg);
-                text-align: center;
-                gap: var(--spacing-lg);
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio – Syauqi Radhi Athallah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Syauqi Radhi Athallah</div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="nav-links">
-                <a href="#about">Tentang Saya</a>
-                <a href="#projects">Proyek</a>
-                <a href="#certificates">Sertifikat</a>
-                <a href="#contact">Kontak</a>
-            </div>
-        </nav>
-    </header>
+<body class="dark">
+  <!-- cursor & particles -->
+  <div class="cursor"></div>
 
-    <main>
-        <section id="about" class="about">
-            <div>
-                <h2>Tentang Saya</h2>
-                <p>Saya adalah seorang pengembang web full-stack dengan pengalaman lebih dari 5 tahun dalam membangun aplikasi web modern. Keahlian saya mencakup HTML, CSS, JavaScript, React, dan Node.js. Saya selalu bersemangat untuk belajar teknologi baru dan menciptakan solusi inovatif untuk masalah kompleks.</p>
-            </div>
-            <img src="img/IMG_9929.png" alt="Profile Picture">
-        </section>
+    <!-- canvas background bubble -->
+  <canvas id="bubbleCanvas"></canvas>
 
-        <section id="projects">
-            <h2>Proyek</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <a href="https://tokoradhi.vercel.app" target="_blank">
-                        <img src="img/Proyek-1.png" alt="Project 1">
-                        <div class="project-info">
-                            <h3>E-Commerce Website</h3>
-                            <p>Website e-commerce lengkap dengan sistem pembayaran. Dibangun menggunakan HTML, CSS, JS</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://gorey.vercel.app/" target="_blank">
-                        <img src="img/Proyek-2.png" alt="Project 2">
-                        <div class="project-info">
-                            <h3>Restaurant Website</h3>
-                            <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim. Menggunakan Vue.js untuk frontend dan Firebase untuk backend.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://web-radhiafif.vercel.app/" target="_blank">
-                        <img src="img/Proyek-3.png" alt="Project 3">
-                        <div class="project-info">
-                            <h3>Courses Website</h3>
-                            <p>Website portofolio responsif dengan tema gelap. Dibuat menggunakan HTML, CSS, dan JavaScript.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+  <!-- cursor & particles -->
+  <div class="cursor"></div>
 
-        <section id="certificates">
-            <h2>Sertifikat</h2>
-            <div class="certificates-grid">
-                <div class="certificate-card">
-                    <img src="img/Java Fundamental.png" alt="Certificate 1">
-                    <h3>Java Fundamental</h3>
-                    <p>Oracle Academy - 2024</p>
-                </div>
-                <div class="certificate-card">
-                    <img src="img/Java Foundation.png" alt="Certificate 2">
-                    <h3>Java Foundation</h3>
-                    <p>Oracle Academy - 2024</p>
-                </div>
-                <div class="certificate-card">
-                    <img src="img/Serti-3.PNG" alt="Certificate 3">
-                    <h3>Webinar IdWebHost</h3>
-                    <p>IdWebHost - 2024</p>
-                </div>
-            </div>
-        </section>
+  <!-- animated blobs -->
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
 
-        <section id="contact">
-            <h2>Kontak</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Nama" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Pesan" rows="5" required></textarea>
-                </div>
-                <button type="submit">Kirim Pesan</button>
-            </form>
-        </section>
-    </main>
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+        Radhi.dev
+      </div>
+      <div class="nav-links">
+        <a href="#hero">Beranda</a>
+        <a href="#about">Tentang</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+      </div>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="toggle tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="btn-primary" onclick="scrollToSection('projects')">Lihat Proyek</button>
+      </div>
+    </nav>
+  </header>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/radhi2006" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/syauqi-radhi-athallah/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/radhiathl/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-left reveal">
+        <small>👋 Halo, aku Radhi</small>
+        <h1>Informatics Student & Web/App Developer.</h1>
+        <p>
+          Mahasiswa TI UIN Syarif Hidayatullah Jakarta yang suka bikin web interaktif,
+          aplikasi Java (JDBC, JavaFX), dan UI yang enak dilihat. Sering ngulik proyek sendiri
+          kayak to-do list “ListIn”, tracker keuangan, sampai platform nonton film.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="scrollToSection('projects')"><i class="fa-solid fa-folder-open"></i> Lihat Proyek</button>
+          <a href="#contact" class="hero-link">Kontak aku ↓</a>
+          <!-- kalau nanti ada CV tinggal ganti jadi href file -->
         </div>
-        <p>&copy; 2024 Syauqi Radhi Athallah. All rights reserved.</p>
-    </footer>
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>15+ </h3>
+            <p>proyek tugas & pribadi</p>
+          </div>
+          <div class="stat">
+            <h3>4+</h3>
+            <p>stack yang dikuasai</p>
+          </div>
+          <div class="stat">
+            <h3>2025</h3>
+            <p>aktif kuliah TI</p>
+          </div>
+        </div>
+      </div>
+      <!-- parallax wrapper -->
+      <div class="hero-parallax">
+        <div class="hero-right reveal" data-parallax>
+          <h2>Aktivitas Terakhir</h2>
+          <div class="project-card">
+            <div class="p-icon"><i class="fa-solid fa-list-check"></i></div>
+            <div>
+              <strong>ListIn – To-do List Web</strong>
+              <small>update UI + notifikasi telegram</small>
+            </div>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+          <div class="project-card">
+            <div class="p-icon p2"><i class="fa-solid fa-coins"></i></div>
+            <div>
+              <strong>Personal Finance Tracker</strong>
+              <small>fitur transfer antar rekening</small>
+            </div>
+            <span class="badge">java</span>
+          </div>
+          <div class="project-card">
+            <div class="p-icon p3"><i class="fa-solid fa-keyboard"></i></div>
+            <div>
+              <strong>Typing Speed Test</strong>
+              <small>layout + timer js</small>
+            </div>
+            <i class="fa-solid fa-check" style="color:#22c55e;"></i>
+          </div>
+          <p class="hero-note">
+            fokus ke: web interaktif • Java OOP • UI modern • integrasi API sederhana
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Mobile Navigation Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title reveal">
+        <div>
+          <h2>Tentang aku</h2>
+          <p>Versi ringkes kenapa aku cocok bikin aplikasi & web kampus.</p>
+        </div>
+      </div>
+      <p class="about-text reveal">
+        Aku Syauqi Radhi Athallah, mahasiswa Teknik Informatika UIN Jakarta. Sering ngerjain project
+        fullstack kecil-kecilan buat latihan, mulai dari PHP + MySQL, Java (JavaBank, JDBC, GUI), sampai
+        landing page modern. Aku suka ngatur UI biar clean dan ada animasinya, jadi user nggak bosen.
+      </p>
+    </section>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title reveal">
+        <div>
+          <h2>Skills & Tech</h2>
+          <p>Beberapa tools dan bahasa yang sering aku pakai di tugas maupun projek pribadi.</p>
+        </div>
+      </div>
+      <div class="skills-grid">
+        <span class="chip reveal">HTML5 / Semantic</span>
+        <span class="chip reveal">CSS3 (Flex, Grid)</span>
+        <span class="chip reveal">JavaScript (DOM)</span>
+        <span class="chip reveal">PHP + MySQL</span>
+        <span class="chip reveal">Java (OOP, JDBC)</span>
+        <span class="chip reveal">JavaFX / Desktop UI</span>
+        <span class="chip reveal">UI/UX basic</span>
+        <span class="chip reveal">Deploy (InfinityFree / Vercel)</span>
+        <span class="chip reveal">Git & VS Code</span>
+      </div>
+    </section>
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-links') && !e.target.closest('.menu-toggle')) {
-                navLinks.classList.remove('active');
-            }
-        });
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title reveal">
+        <div>
+          <h2>Proyek pilihan</h2>
+          <p>Project yang paling sering aku ceritain dan bisa kamu cek strukturnya.</p>
+        </div>
+        <a href="#contact" class="see-all">butuh app baru? ↗</a>
+      </div>
+      <div class="projects-grid">
+        <article class="portfolio-card reveal">
+          <div class="tag">Web App</div>
+          <h3>ListIn – To-do List</h3>
+          <p>Website todolist dengan kategori, prioritas, dan rencana integrasi notif Telegram.</p>
+          <ul>
+            <li>PHP + MySQL</li>
+            <li>UI modern</li>
+            <li>role user</li>
+          </ul>
+        </article>
+        <article class="portfolio-card reveal">
+          <div class="tag">Java Desktop</div>
+          <h3>Personal Finance Tracker</h3>
+          <p>Aplikasi desktop buat catat pemasukan, pengeluaran, hutang, dan transfer rekening.</p>
+          <ul>
+            <li>Java + SQLite</li>
+            <li>GUI modern</li>
+            <li>laporan bulanan</li>
+          </ul>
+        </article>
+        <article class="portfolio-card reveal">
+          <div class="tag">Front-end</div>
+          <h3>Typing Speed Test</h3>
+          <p>Web test kecepatan ngetik mirip 10fastfingers yang lagi aku kembangin.</p>
+          <ul>
+            <li>Timer JS</li>
+            <li>highlight kata</li>
+            <li>responsive</li>
+          </ul>
+        </article>
+        <article class="portfolio-card reveal">
+          <div class="tag">Media</div>
+          <h3>Platform Nonton Film</h3>
+          <p>Website untuk tambah dan play video yang ditonton orang lain, desain modern.</p>
+          <ul>
+            <li>card film</li>
+            <li>transisi halus</li>
+            <li>siap pakai DB</li>
+          </ul>
+        </article>
+        <article class="portfolio-card reveal">
+          <div class="tag">Java OOP</div>
+          <h3>JavaBank</h3>
+          <p>Proyek latihan OOP multi-file (JavaBank, Account, InterfaceBankAccount) dari modul Oracle.</p>
+          <ul>
+            <li>interface & class</li>
+            <li>setor & tarik</li>
+            <li>struktur rapi</li>
+          </ul>
+        </article>
+        <article class="portfolio-card reveal">
+          <div class="tag">Mini Tool</div>
+          <h3>Random Spin Group</h3>
+          <p>Randomizer anggota ke dalam grup dengan auto pindah kalau grup penuh.</p>
+          <ul>
+            <li>JS murni</li>
+            <li>logic terkontrol</li>
+            <li>cocok tugas kampus</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title reveal">
+        <div>
+          <h2>Kontak aku</h2>
+          <p>Mau kolab tugas, tanya source code, atau minta web kayak gini? Kirim aja.</p>
+        </div>
+      </div>
+      <div class="contact-panel reveal">
+        <p><i class="fa-solid fa-envelope"></i> email: <strong>radhi@example.com</strong> (ganti kalau udah punya)</p>
+        <p><i class="fa-brands fa-whatsapp"></i> whatsapp: <strong>+62 ...</strong></p>
+        <p><i class="fa-brands fa-github"></i> github: <strong>github.com/radhi-uin</strong> (placeholder)</p>
+        <p class="contact-note">kamu bisa ganti jadi form beneran nanti.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Syauqi Radhi Athallah — dibuat pakai animasi custom 😎
+  </footer>
+
+  <div class="float-btn" onclick="scrollToSection('hero')" title="Kembali ke atas">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+  <script src="script.js"></script>
 </body>
+</html>
