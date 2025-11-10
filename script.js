@@ -83,14 +83,12 @@ function createParticle(x, y) {
   }, 600);
 }
 
-// animated bubble background
+// animated bubble background (drift down)
 const bubbleCanvas = document.getElementById('bubbleCanvas');
 if (bubbleCanvas) {
   const ctx = bubbleCanvas.getContext('2d');
   let bubbles = [];
-  const MAX_BUBBLES = 35; // jadi 55
-
-
+  const MAX_BUBBLES = 85; // banyakin biar rame
 
   function resizeCanvas() {
     bubbleCanvas.width = window.innerWidth;
@@ -99,18 +97,21 @@ if (bubbleCanvas) {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  function createBubble() {
-    const r = Math.random() * 18 + 6; // radius 6 - 24
+  function createBubble(fromTop = false) {
+    const r = Math.random() * 4 + 2; // 2 - 6px (kecil-kecil)
     return {
       x: Math.random() * bubbleCanvas.width,
-      y: Math.random() * bubbleCanvas.height,
+      y: fromTop ? -10 : Math.random() * bubbleCanvas.height,
       r,
-      vx: (Math.random() - 0.5) * 1.5,   // gerak pelan
-      vy: (Math.random() - 0.5) * 1.5,
-      alpha: Math.random() * 0.35 + 0.15
+      // turun pelan
+      vy: Math.random() * 0.4 + 0.2, 
+      // geser dikit biar gak kaku
+      vx: (Math.random() - 0.5) * 0.15,
+      alpha: Math.random() * 0.4 + 0.15
     };
   }
 
+  // awalnya isi penuh
   for (let i = 0; i < MAX_BUBBLES; i++) {
     bubbles.push(createBubble());
   }
@@ -118,29 +119,28 @@ if (bubbleCanvas) {
   function animateBubbles() {
     ctx.clearRect(0, 0, bubbleCanvas.width, bubbleCanvas.height);
 
-    bubbles.forEach(b => {
-      // gerak
-      b.x += b.vx;
-      b.y += b.vy;
+    const isLight = document.body.classList.contains('light');
 
-      // mantul
-      if (b.x - b.r < 0 || b.x + b.r > bubbleCanvas.width) b.vx *= -1;
-      if (b.y - b.r < 0 || b.y + b.r > bubbleCanvas.height) b.vy *= -1;
+    bubbles.forEach((b, i) => {
+      b.y += b.vy;
+      b.x += b.vx;
+
+      // kalau sampai bawah -> spawn lagi di atas
+      if (b.y - b.r > bubbleCanvas.height + 8) {
+        bubbles[i] = createBubble(true);
+      }
+
+      // kalau keluar samping dikit, balikin
+      if (b.x < -10) b.x = bubbleCanvas.width + 5;
+      if (b.x > bubbleCanvas.width + 10) b.x = -5;
 
       // gambar
       ctx.beginPath();
-      // warna beda kalau light
-      const isLight = document.body.classList.contains('light');
-      ctx.strokeStyle = isLight
-        ? `rgba(6,182,212,${b.alpha})`
-        : `rgba(56,189,248,${b.alpha})`;
-      ctx.lineWidth = 1.2;
       ctx.fillStyle = isLight
-        ? `rgba(255,255,255,0.02)`
-        : `rgba(3,7,18,0.05)`;
+        ? `rgba(6,182,212,${b.alpha})`
+        : `rgba(203,213,225,${b.alpha})`;
       ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
     });
 
     requestAnimationFrame(animateBubbles);

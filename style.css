@@ -346,9 +346,11 @@ body.light .project-card:hover {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -3;             /* lebih belakang dari blob */
+  z-index: -3;
   background: transparent;
+  pointer-events: none; /* biar gak nutupin klik */
 }
+
 
 .p-icon {
   width: 46px;
